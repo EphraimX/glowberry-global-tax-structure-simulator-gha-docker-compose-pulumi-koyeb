@@ -22,7 +22,7 @@ jobs:
       - name: Clean up previous Pulumi installs and Install Pulumi
         run: |
           rm -rf $HOME/.pulumi
-          curl -fsSL https://get.pulumi.com | sh
+          curl -fsSL https://get.pulumi.com | sh -s -- --version 3.160.0
           echo "$HOME/.pulumi/bin" >> $GITHUB_PATH
 
       - name: Select Pulumi Stack and Deploy
@@ -31,6 +31,5 @@ jobs:
           pulumi login
           pulumi stack select glowberry-dev-stack
           pulumi version
-          pulumi plugin install language yaml
           pulumi preview
           pulumi up -y
