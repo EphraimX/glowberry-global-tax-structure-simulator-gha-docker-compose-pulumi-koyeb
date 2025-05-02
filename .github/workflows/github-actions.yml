@@ -16,8 +16,9 @@ jobs:
       - name: Pulumi Deploy
         run: |
           export KOYEB_TOKEN=${{secrets.KOYEB_TOKEN}}
-          apt-get update
-          apt-get install -y curl
+          sudo apt-get update
+          sudo apt-get install -y curl
           curl -fsSL https://get.pulumi.com | sh
+          export PATH=$HOME/.pulumi/bin:$PATH
           pulumi preview
           pulumi up -y
