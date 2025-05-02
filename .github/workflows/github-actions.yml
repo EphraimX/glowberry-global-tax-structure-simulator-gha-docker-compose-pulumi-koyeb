@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  frontend:
+  pulumi-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +22,6 @@ jobs:
           export PATH=$HOME/.pulumi/bin:$PATH
           export PULUMI_ACCESS_TOKEN=${{secrets.PULUMI_ACCESS_TOKEN}}
           pulumi login
+          pulumi stack init glowberry-dev-stack || pulumi stack select glowberry-dev-stack
           pulumi preview
           pulumi up -y
