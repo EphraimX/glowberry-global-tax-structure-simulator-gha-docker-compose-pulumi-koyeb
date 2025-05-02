@@ -16,6 +16,7 @@ jobs:
       - name: Verify Pulumi Installation
         run: |
           pulumi version
+          mkdir -p $HOME/.pulumi/bin  # Make sure the Pulumi directory exists
           ls -la $HOME/.pulumi/bin
 
       - name: Clean up previous Pulumi installs and Install Pulumi
