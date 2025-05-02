@@ -16,6 +16,8 @@ jobs:
       - name: Deploy Koyeb
         working-directory: ./pulumi-koyeb
         run: |
+          - sudo apt-get update
+          - sudo apt-get install -y curl
           - export KOYEB_TOKEN=${{secrets.KOYEB_TOKEN}}
           - export PULUMI_ACCESS_TOKEN=${{secrets.PULUMI_ACCESS_TOKEN}}
           - curl -fsSL https://get.pulumi.com | sh
