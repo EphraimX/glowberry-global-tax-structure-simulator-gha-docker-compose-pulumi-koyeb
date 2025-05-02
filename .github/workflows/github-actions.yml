@@ -12,17 +12,23 @@ jobs:
     steps:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
-      
-      - name: Pulumi Deploy
+
+      - name: Install Dependencies and Pulumi
         run: |
-          export KOYEB_TOKEN=${{secrets.KOYEB_TOKEN}}
           sudo apt-get update
           sudo apt-get install -y curl
           curl -fsSL https://get.pulumi.com | sh
-          export PATH=$HOME/.pulumi/bin:$PATH
-          export PULUMI_ACCESS_TOKEN=${{secrets.PULUMI_ACCESS_TOKEN}}
+        shell: bash
+
+      - name: Add Pulumi to PATH
+        run: echo "$HOME/.pulumi/bin" >> $GITHUB_PATH
+
+      - name: Pulumi Preview & Deploy
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+          KOYEB_TOKEN: ${{ secrets.KOYEB_TOKEN }}
+        run: |
           pulumi login
-          pulumi stack init glowberry-dev-stack || pulumi stack select glowberry-dev-stack
-          pulumi plugin install language yaml
+          pulumi stack select glowberry-dev-stack || pulumi stack init glowberry-dev-stack
           pulumi preview
           pulumi up -y
