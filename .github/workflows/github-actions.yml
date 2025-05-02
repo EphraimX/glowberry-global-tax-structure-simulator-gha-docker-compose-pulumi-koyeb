@@ -25,15 +25,10 @@ jobs:
           curl -fsSL https://get.pulumi.com | sh
           echo "$HOME/.pulumi/bin" >> $GITHUB_PATH
 
-      - name: Set Pulumi Access Token
-        run: |
-          export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}
-          echo "Pulumi Access Token is set."
-
       - name: Select Pulumi Stack and Deploy
         run: |
+          export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}
           pulumi login
           pulumi stack select glowberry-dev-stack
           pulumi preview
           pulumi up -y
-
