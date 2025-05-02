@@ -30,5 +30,7 @@ jobs:
           export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}
           pulumi login
           pulumi stack select glowberry-dev-stack
+          pulumi version
+          pulumi plugin install language yaml
           pulumi preview
           pulumi up -y
