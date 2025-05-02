@@ -25,7 +25,7 @@ jobs:
           curl -L https://github.com/koyeb/pulumi-koyeb/releases/download/v0.1.11/pulumi-resource-koyeb-v0.1.11-linux-amd64.tar.gz | tar -xz -C ~/.pulumi/plugins/resource-koyeb-v0.1.11
           export PATH=$HOME/.pulumi/bin:$PATH
           pulumi login
-          pulumi stack select gtaxsim-gha-dkr-plkb
+          pulumi stack select pulumi-koyeb
           pulumi preview
           pulumi up -y
 
