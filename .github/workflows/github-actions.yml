@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
       
-      - name: Deploy Koyeb
+      - name: Koyeb Setup and Deploy
         working-directory: ./pulumi-koyeb
         run: |
           sudo apt-get update
@@ -25,8 +25,8 @@ jobs:
           curl -L https://github.com/koyeb/pulumi-koyeb/releases/download/v0.1.11/pulumi-resource-koyeb-v0.1.11-linux-amd64.tar.gz | tar -xz -C ~/.pulumi/plugins/resource-koyeb-v0.1.11
           export PATH=$HOME/.pulumi/bin:$PATH
           pulumi login
-          pulumi stack select glowberry-dev-stack
-          pulmi preview
+          pulumi stack select gtaxsim-gha-dkr-plkb
+          pulumi preview
           pulumi up -y
 
 
