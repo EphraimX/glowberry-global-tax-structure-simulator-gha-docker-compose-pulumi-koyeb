@@ -12,24 +12,3 @@ jobs:
     steps:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
-
-      - name: Verify Pulumi Installation
-        run: |
-          pulumi version
-          mkdir -p $HOME/.pulumi/bin  # Make sure the Pulumi directory exists
-          ls -la $HOME/.pulumi/bin
-
-      - name: Clean up previous Pulumi installs and Install Pulumi
-        run: |
-          rm -rf $HOME/.pulumi
-          curl -fsSL https://get.pulumi.com | sh -s -- --version 3.160.0
-          echo "$HOME/.pulumi/bin" >> $GITHUB_PATH
-
-      - name: Select Pulumi Stack and Deploy
-        run: |
-          export PULUMI_ACCESS_TOKEN=${{ secrets.PULUMI_ACCESS_TOKEN }}
-          pulumi login
-          pulumi stack select glowberry-dev-stack
-          pulumi version
-          pulumi preview
-          pulumi up -y
