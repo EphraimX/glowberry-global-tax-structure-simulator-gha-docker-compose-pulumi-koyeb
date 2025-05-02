@@ -16,17 +16,17 @@ jobs:
       - name: Deploy Koyeb
         working-directory: ./pulumi-koyeb
         run: |
-          - sudo apt-get update
-          - sudo apt-get install -y curl
-          - export KOYEB_TOKEN=${{secrets.KOYEB_TOKEN}}
-          - export PULUMI_ACCESS_TOKEN=${{secrets.PULUMI_ACCESS_TOKEN}}
-          - curl -fsSL https://get.pulumi.com | sh
-          - mkdir -p ~/.pulumi/plugins/resource-koyeb-v0.1.11
-          - curl -L https://github.com/koyeb/pulumi-koyeb/releases/download/v0.1.11/pulumi-resource-koyeb-v0.1.11-linux-amd64.tar.gz | tar -xz -C ~/.pulumi/plugins/resource-koyeb-v0.1.11
-          - export PATH=$HOME/.pulumi/bin:$PATH
-          - pulumi login
-          - pulumi stack select glowberry-dev-stack
-          - pulmi preview
-          - pulumi up -y
+          sudo apt-get update
+          sudo apt-get install -y curl
+          export KOYEB_TOKEN=${{secrets.KOYEB_TOKEN}}
+          export PULUMI_ACCESS_TOKEN=${{secrets.PULUMI_ACCESS_TOKEN}}
+          curl -fsSL https://get.pulumi.com | sh
+          mkdir -p ~/.pulumi/plugins/resource-koyeb-v0.1.11
+          curl -L https://github.com/koyeb/pulumi-koyeb/releases/download/v0.1.11/pulumi-resource-koyeb-v0.1.11-linux-amd64.tar.gz | tar -xz -C ~/.pulumi/plugins/resource-koyeb-v0.1.11
+          export PATH=$HOME/.pulumi/bin:$PATH
+          pulumi login
+          pulumi stack select glowberry-dev-stack
+          pulmi preview
+          pulumi up -y
 
 
